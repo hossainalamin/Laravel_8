@@ -19,8 +19,8 @@ Route::get('/', function () {
 
 //rediection from about us page
 Route::get('/about',function(){
-//return view('about');
-return redirect ("/");
+return view('about');
+//return redirect ("/");
 });
 
 //another way of routing
@@ -33,3 +33,4 @@ Route::get('/contact/{number}',function($number){
 
 //Routing for controllers
 Route::get("users/{name}",[Users::class,'index']);
+Route::get("users",[Users::class,'userAbout']);
