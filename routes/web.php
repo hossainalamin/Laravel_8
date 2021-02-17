@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Users;
 
 /*
 |--------------------------------------------------------------------------
@@ -29,3 +30,6 @@ return redirect ("/");
 Route::get('/contact/{number}',function($number){
     return view ('contact',["number"=>"$number"]);
 })->where('number','[0-9]+');
+
+//Routing for controllers
+Route::get("users/{name}",[Users::class,'index']);
