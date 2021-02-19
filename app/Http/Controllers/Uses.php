@@ -1,9 +1,6 @@
 <?php
-
 namespace App\Http\Controllers;
-
 use Illuminate\Http\Request;
-
 class Users extends Controller
 {
     public function index($name){
@@ -12,6 +9,6 @@ class Users extends Controller
         echo "Hi this is from controllers";
     }
     public function userAbout(){
-        return view("about");
+        return view("about",["name"=>["Alamin","Rokib","yeasin"]]);
     }
 }

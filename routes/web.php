@@ -1,8 +1,6 @@
 <?php
-
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Users;
-
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -28,7 +26,7 @@ return view('about');
 
 //passing data with routing with route contraints
 Route::get('/contact/{number}',function($number){
-    return view ('contact',["number"=>"$number"]);
+    return view('contact',["number"=>"$number"]);
 })->where('number','[0-9]+');
 
 //Routing for controllers
