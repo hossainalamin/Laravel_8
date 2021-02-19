@@ -1,6 +1,8 @@
 <?php
+
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Users;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -14,10 +16,14 @@ use App\Http\Controllers\Users;
 Route::get('/', function () {
     return view('welcome');
 });
+Route::get('/login',function(){
+    return view('userform');
+});
+Route::view("noaccess","noaccess");
 
-//rediection from about us page
-Route::get('/about',function(){
-return view('about');
+//rediection from  page
+Route::get('/contact',function(){
+return view('contact');
 //return redirect ("/");
 });
 
@@ -26,10 +32,18 @@ return view('about');
 
 //passing data with routing with route contraints
 Route::get('/contact/{number}',function($number){
-    return view('contact',["number"=>"$number"]);
+    return view ('contact',["number"=>"$number"]);
 })->where('number','[0-9]+');
 
 //Routing for controllers
 Route::get("users/{name}",[Users::class,'index']);
 Route::get("users",[Users::class,'userAbout']);
 Route::post("userform",[Users::class,'userForm']);
+
+//route for middleware
+Route::group(['middleware'=>['protectedpage']],function(){
+    Route::get('/contact',function(){
+        return view('contact');
+        //return redirect ("/");
+        });
+});
