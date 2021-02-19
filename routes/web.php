@@ -32,3 +32,4 @@ Route::get('/contact/{number}',function($number){
 //Routing for controllers
 Route::get("users/{name}",[Users::class,'index']);
 Route::get("users",[Users::class,'userAbout']);
+Route::post("userform",[Users::class,'userForm']);

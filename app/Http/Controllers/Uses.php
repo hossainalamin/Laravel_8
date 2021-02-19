@@ -9,6 +9,13 @@ class Users extends Controller
         echo "Hi this is from controllers";
     }
     public function userAbout(){
-        return view("about",["name"=>["Alamin","Rokib","yeasin"]]);
+        return view("about",["name"=>["Alamin","rokib","kanon"]]);
+    }
+    public function userForm(Request $req){
+        $req->validate([
+            "name"=>"required | max:50",
+            "pass"=>"required | min:6"
+        ]);
+        return $req->input();
     }
 }
