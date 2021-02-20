@@ -1,6 +1,7 @@
 <?php
 namespace App\Http\Controllers;
 use Illuminate\Http\Request;
+use Illuminate\support\Facades\DB;
 class Users extends Controller
 {
     public function index($name){
@@ -13,9 +14,12 @@ class Users extends Controller
     }
     public function userForm(Request $req){
         $req->validate([
-            "name"=>"required | max:50",
+            "name"=>" | max:50",
             "pass"=>"required | min:6"
         ]);
         return $req->input();
+    }
+    public function database(){
+        return DB::select("SELECT * FROM tbl_user");
     }
 }

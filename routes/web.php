@@ -39,7 +39,7 @@ Route::get('/contact/{number}',function($number){
 Route::get("users/{name}",[Users::class,'index']);
 Route::get("users",[Users::class,'userAbout']);
 Route::post("userform",[Users::class,'userForm']);
-
+Route::get("database",[Users::class,'database']);
 //route for middleware
 Route::group(['middleware'=>['protectedpage']],function(){
     Route::get('/contact',function(){
