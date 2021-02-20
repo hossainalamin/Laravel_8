@@ -18,7 +18,7 @@ Route::get('/', function () {
 });
 Route::get('/login',function(){
     return view('userform');
-});
+})->middleware('protectedpage');
 Route::view("noaccess","noaccess");
 
 //rediection from  page

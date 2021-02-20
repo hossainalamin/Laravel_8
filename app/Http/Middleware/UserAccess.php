@@ -19,6 +19,5 @@ class UserAccess
         if($request->age && $request->age<18)
         return redirect("noaccess");        
         return $next($request);
-        return $next($request);
     }
 }
