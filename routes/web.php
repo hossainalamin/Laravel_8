@@ -1,8 +1,7 @@
 <?php
-
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Users;
-
+use App\Http\Controllers\ModelConnection;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -20,6 +19,7 @@ Route::get('/login',function(){
     return view('userform');
 })->middleware('protectedpage');
 Route::view("noaccess","noaccess");
+Route::view("http","http");
 
 //rediection from  page
 Route::get('/contact',function(){
@@ -39,11 +39,13 @@ Route::get('/contact/{number}',function($number){
 Route::get("users/{name}",[Users::class,'index']);
 Route::get("users",[Users::class,'userAbout']);
 Route::post("userform",[Users::class,'userForm']);
-Route::get("database",[Users::class,'database']);
+Route::get('database',[Users::class,'database']);
+Route::get('modelconnection',[ModelConnection::class,'getData']);
+Route::get('http',[Users::class,'httpRequest']);
+
 //route for middleware
 Route::group(['middleware'=>['protectedpage']],function(){
     Route::get('/contact',function(){
         return view('contact');
-        //return redirect ("/");
         });
 });
