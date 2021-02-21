@@ -15,18 +15,17 @@ use App\Http\Controllers\ModelConnection;
 Route::get('/', function () {
     return view('welcome');
 });
-Route::get('/login',function(){
+Route::get('login',function(){
     return view('userform');
-})->middleware('protectedpage');
+});
 Route::view("noaccess","noaccess");
 Route::view("http","http");
 
 //rediection from  page
-Route::get('/contact',function(){
-return view('contact');
+Route::get('/about',function(){
+return view('about');
 //return redirect ("/");
-});
-
+})->middleware('protectedpage');
 //another way of routing
 //Route::view('contact','contact');
 
@@ -37,12 +36,12 @@ Route::get('/contact/{number}',function($number){
 
 //Routing for controllers
 Route::get("users/{name}",[Users::class,'index']);
-Route::get("users",[Users::class,'userAbout']);
-Route::post("userform",[Users::class,'userForm']);
+Route::get("about",[Users::class,'userAbout']);
+//Route::post("userform",[Users::class,'userForm']);
 Route::get('database',[Users::class,'database']);
 Route::get('modelconnection',[ModelConnection::class,'getData']);
 Route::get('http',[Users::class,'httpRequest']);
-
+Route::delete("method",[Users::class,'httpMethod']);
 //route for middleware
 Route::group(['middleware'=>['protectedpage']],function(){
     Route::get('/contact',function(){

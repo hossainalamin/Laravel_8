@@ -1,5 +1,6 @@
 <h1>User login</h1>
-<form action="userform" method="POST">
+<form action="method" method="POST">
+{{method_field('delete')}}
 @csrf
 <input type="text" name="name" placeholder="User name"><br>
 <span style='color:red;'>@error('name'){{$message}}@enderror</span>

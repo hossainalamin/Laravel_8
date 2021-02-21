@@ -1,2 +1,10 @@
 <x-header data="Header data"/>
-<h1>{{$header}}</h1>
+@foreach($name as $user)
+<h1>{{$user}}</h1>
+@endforeach
+@csrf
+<script>
+var item = @json($name);
+console.warn(item);
+</script>
+@include ('welcome')

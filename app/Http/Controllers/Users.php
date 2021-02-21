@@ -3,7 +3,6 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\support\Facades\DB;
 use Illuminate\support\Facades\Http;
-
 class Users extends Controller
 {
     public function index($name){
@@ -27,5 +26,8 @@ class Users extends Controller
     public function httpRequest(){
         $data = Http::get("http://localhost/RestApi/api-fetch-single.php");
         return view("http",["data"=>$data['message']]);
+    }
+    public function httpMethod(Request $req){
+        return $req->intput();
     }
 }
