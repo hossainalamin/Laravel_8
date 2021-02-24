@@ -3,6 +3,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Users;
 use App\Http\Controllers\UserAuth;
 use App\Http\Controllers\ModelConnection;
+use App\Http\Controllers\FileUpload;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -21,6 +22,7 @@ Route::get('login',function(){
 });
 Route::view("noaccess","noaccess");
 Route::view("http","http");
+Route::view("fileupload","fileupload");
 Route::view("addmember","addmember");
 Route::get('profile',function(){
     if(!session()->has('name')){
@@ -62,6 +64,7 @@ Route::get('http',[Users::class,'httpRequest']);
 Route::delete("method",[Users::class,'httpMethod']);
 Route::post('userlogin',[UserAuth::class,'userLogin']);
 Route::post('useradd',[UserAuth::class,'userAdd']);
+Route::post('fileupload',[FileUpload::class,'index']);
 
 //route for middleware
 Route::group(['middleware'=>['protectedpage']],function(){
