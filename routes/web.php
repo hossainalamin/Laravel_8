@@ -1,6 +1,7 @@
 <?php
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Users;
+use App\Http\Controllers\UserAuth;
 use App\Http\Controllers\ModelConnection;
 /*
 |--------------------------------------------------------------------------
@@ -20,6 +21,22 @@ Route::get('login',function(){
 });
 Route::view("noaccess","noaccess");
 Route::view("http","http");
+Route::get('profile',function(){
+    if(!session()->has('name')){
+        return redirect('login');
+    }
+});
+Route::get('/userlogin',function(){
+    if(session()->has('name')){
+        return redirect('profile');
+    }
+});
+Route::get('/logout',function(){
+    if(session()->has('name')){
+        session()->pull('name');
+    }
+    return redirect('login');
+});
 
 //rediection from  page
 Route::get('/about',function(){
@@ -42,6 +59,8 @@ Route::get('database',[Users::class,'database']);
 Route::get('modelconnection',[ModelConnection::class,'getData']);
 Route::get('http',[Users::class,'httpRequest']);
 Route::delete("method",[Users::class,'httpMethod']);
+Route::post('userlogin',[UserAuth::class,'userLogin']);
+
 //route for middleware
 Route::group(['middleware'=>['protectedpage']],function(){
     Route::get('/contact',function(){

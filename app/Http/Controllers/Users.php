@@ -15,7 +15,7 @@ class Users extends Controller
     }
     public function userForm(Request $req){
         $req->validate([
-            "name"=>" | max:50",
+            "name"=>" required | max:50",
             "pass"=>"required | min:6"
         ]);
         return $req->input();
