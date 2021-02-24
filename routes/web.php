@@ -21,6 +21,7 @@ Route::get('login',function(){
 });
 Route::view("noaccess","noaccess");
 Route::view("http","http");
+Route::view("addmember","addmember");
 Route::get('profile',function(){
     if(!session()->has('name')){
         return redirect('login');
@@ -60,6 +61,7 @@ Route::get('modelconnection',[ModelConnection::class,'getData']);
 Route::get('http',[Users::class,'httpRequest']);
 Route::delete("method",[Users::class,'httpMethod']);
 Route::post('userlogin',[UserAuth::class,'userLogin']);
+Route::post('useradd',[UserAuth::class,'userAdd']);
 
 //route for middleware
 Route::group(['middleware'=>['protectedpage']],function(){

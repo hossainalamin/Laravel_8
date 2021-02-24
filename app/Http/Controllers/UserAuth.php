@@ -11,6 +11,14 @@ class UserAuth extends Controller
             "name" => "required|max:10",
             "pass"=>"required|min:6"
         ]);
-        return $req->input();
+        $data = $req->input();
+        $req->session()->put('name',$data['name']);
+        return redirect('profile');
     }
+    public function userAdd(Request $req){
+        $data = $req->input('user');
+        $req->session()->flash('user',$data);
+        return redirect('addmember');
+    }
+
 }
