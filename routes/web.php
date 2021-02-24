@@ -40,7 +40,10 @@ Route::get('/logout',function(){
     }
     return redirect('login');
 });
-
+Route::get('/language/{lang}',function($lang){
+App::setlocale($lang);
+return view('language');
+});
 //rediection from  page
 Route::get('/about',function(){
 return view('about');
