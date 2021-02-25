@@ -2,12 +2,12 @@
 <table border="1">
 <th>Name</th>
 <th>Email</th>
-<th>Phone</th>
+<th>Operation</th>
 @foreach($data as $result)
 <tr>
 <td>{{$result['name']}}</td>
 <td>{{$result['email']}}</td>
-<td>{{$result['phone']}}</td>
+<td><a href={{"/delete/".$result['id']}}>Delete</a></a></td>
 </tr>
 @endforeach
 </table>

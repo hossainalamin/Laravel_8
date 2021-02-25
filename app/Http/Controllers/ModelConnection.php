@@ -19,4 +19,9 @@ class ModelConnection extends Controller
         $object->save();
         return redirect('add');
     }
+    public function deleteData($id){
+        $data = User::find($id);
+        $data->delete();
+        return redirect('datashow');
+    }
 }

@@ -64,6 +64,7 @@ Route::get("about",[Users::class,'userAbout']);
 //Route::post("userform",[Users::class,'userForm']);
 Route::get('database',[Users::class,'database']);
 Route::get('modelconnection',[ModelConnection::class,'getData']);
+Route::get('delete/{id}',[ModelConnection::class,'deleteData']);
 Route::get('datashow',[ModelConnection::class,'showData']);
 Route::post('adduser',[ModelConnection::class,'userAdd']);
 Route::get('http',[Users::class,'httpRequest']);
