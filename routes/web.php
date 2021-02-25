@@ -63,6 +63,7 @@ Route::get("users/{name}",[Users::class,'index']);
 Route::get("about",[Users::class,'userAbout']);
 //Route::post("userform",[Users::class,'userForm']);
 Route::get('database',[Users::class,'database']);
+Route::get('data',[Users::class,'queryBuilder']);
 Route::get('modelconnection',[ModelConnection::class,'getData']);
 Route::get('delete/{id}',[ModelConnection::class,'deleteData']);
 Route::get('edit/{id}',[ModelConnection::class,'editData']);
