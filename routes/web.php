@@ -24,6 +24,7 @@ Route::view("noaccess","noaccess");
 Route::view("http","http");
 Route::view("fileupload","fileupload");
 Route::view("addmember","addmember");
+Route::view("add","add");
 Route::get('profile',function(){
     if(!session()->has('name')){
         return redirect('login');
@@ -63,6 +64,8 @@ Route::get("about",[Users::class,'userAbout']);
 //Route::post("userform",[Users::class,'userForm']);
 Route::get('database',[Users::class,'database']);
 Route::get('modelconnection',[ModelConnection::class,'getData']);
+Route::get('datashow',[ModelConnection::class,'showData']);
+Route::post('adduser',[ModelConnection::class,'userAdd']);
 Route::get('http',[Users::class,'httpRequest']);
 Route::delete("method",[Users::class,'httpMethod']);
 Route::post('userlogin',[UserAuth::class,'userLogin']);
