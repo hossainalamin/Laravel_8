@@ -8,6 +8,7 @@
 <td>{{$result['name']}}</td>
 <td>{{$result['email']}}</td>
 <td><a href={{"/delete/".$result['id']}}>Delete</a></a></td>
+<td><a href={{"/edit/".$result['id']}}>Edit</a></a></td>
 </tr>
 @endforeach
 </table>

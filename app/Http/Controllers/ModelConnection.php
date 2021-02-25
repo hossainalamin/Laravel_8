@@ -24,4 +24,15 @@ class ModelConnection extends Controller
         $data->delete();
         return redirect('datashow');
     }
+    public function editData($id){
+        $data = User::find($id);
+        return view("edit",["data"=>$data]);
+    }
+    public function updateData(Request $req){
+        $data = User::find($req->id);
+        $data->name  = $req->user;
+        $data->email = $req->email;
+        $data->save();
+        return redirect('datashow');
+    }
 }
