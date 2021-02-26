@@ -73,6 +73,7 @@ Route::get('data',[Users::class,'queryBuilder']);
 Route::get('http',[Users::class,'httpRequest']);
 Route::delete("method",[Users::class,'httpMethod']);
 Route::get("list",[Users::class,'agrigate']);
+Route::get("list",[Users::class,'innerJoin']);
 Route::post('userlogin',[UserAuth::class,'userLogin']);
 Route::post('useradd',[UserAuth::class,'userAdd']);
 Route::post('fileupload',[FileUpload::class,'index']);

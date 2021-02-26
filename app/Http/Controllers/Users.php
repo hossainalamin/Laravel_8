@@ -1,8 +1,8 @@
 <?php
 namespace App\Http\Controllers;
 use Illuminate\Http\Request;
-use Illuminate\support\Facades\DB;
-use Illuminate\support\Facades\Http;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Http;
 class Users extends Controller
 {
     public function index($name){
@@ -47,6 +47,11 @@ class Users extends Controller
         //return DB::table('tbl_user')->count('id');
         //return DB::table('tbl_user')->min('id');
         return DB::table('tbl_user')->max('id');
+    }
+    public function innerJoin(){
+        return DB::table("tbl_user")
+        ->join("users","tbl_user.id","=","users.id")
+        ->get();
     }
 
 }
