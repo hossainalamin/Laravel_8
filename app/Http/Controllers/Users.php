@@ -1,84 +1,52 @@
 <?php
-use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\Users;
-use App\Http\Controllers\UserAuth;
-use App\Http\Controllers\ModelConnection;
-use App\Http\Controllers\FileUpload;
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
-Route::get('/', function () {
-    return view('welcome');
-});
-Route::get('login',function(){
-    return view('userform');
-});
-Route::view("noaccess","noaccess");
-Route::view("http","http");
-Route::view("fileupload","fileupload");
-Route::view("addmember","addmember");
-Route::view("add","add");
-Route::get('profile',function(){
-    if(!session()->has('name')){
-        return redirect('login');
+namespace App\Http\Controllers;
+use Illuminate\Http\Request;
+use Illuminate\support\Facades\DB;
+use Illuminate\support\Facades\Http;
+class Users extends Controller
+{
+    public function index($name){
+        echo $name;
+        echo"<br>";
+        echo "Hi this is from controllers";
     }
-});
-Route::get('/userlogin',function(){
-    if(session()->has('name')){
-        return redirect('profile');
+    public function userAbout(){
+        return view("about",["name"=>["Alamin","rokib","kanon"]]);
     }
-});
-Route::get('/logout',function(){
-    if(session()->has('name')){
-        session()->pull('name');
+    public function userForm(Request $req){
+        $req->validate([
+            "name"=>" required | max:50",
+            "pass"=>"required | min:6"
+        ]);
+        return $req->input();
     }
-    return redirect('login');
-});
-Route::get('/language/{lang}',function($lang){
-App::setlocale($lang);
-return view('language');
-});
-//rediection from  page
-Route::get('/about',function(){
-return view('about');
-//return redirect ("/");
-})->middleware('protectedpage');
-//another way of routing
-//Route::view('contact','contact');
+    public function database(){
+        return DB::select("SELECT * FROM tbl_user");
+    }
+    public function httpRequest(){
+        $data = Http::get("http://localhost/RestApi/api-fetch-single.php");
+        return view("http",["data"=>$data['message']]);
+    }
+    public function httpMethod(Request $req){
+        return $req->intput();
+    }
+    public function queryBuilder(){
+        //return DB::table('users')->where('id',1)->get();
+        // return DB::table('users')->where('id',2)->insert([
+        //     "name"=>"Alamin",
+        //     "email"=>"email@gmail.com"
+        // ]);
+        //return DB::table("users")->where("id",2)->update([
+        //     "name"=>"maisha"
+        //   ]);
+        return DB::table('users')->where('id',2)->delete();
+    }
+    public function agrigate(){
+        //return DB::table('tbl_user')->sum('id');
+        //return DB::table('tbl_user')->avg('id');
+        //return DB::table('tbl_user')->count('id');
+        //return DB::table('tbl_user')->min('id');
+        return DB::table('tbl_user')->max('id');
+    }
 
-//passing data with routing with route contraints
-Route::get('/contact/{number}',function($number){
-    return view ('contact',["number"=>"$number"]);
-})->where('number','[0-9]+');
-
-//Routing for controllers
-Route::get("users/{name}",[Users::class,'index']);
-Route::get("about",[Users::class,'userAbout']);
-//Route::post("userform",[Users::class,'userForm']);
-Route::get('database',[Users::class,'database']);
-Route::get('data',[Users::class,'queryBuilder']);
-Route::get('modelconnection',[ModelConnection::class,'getData']);
-Route::get('delete/{id}',[ModelConnection::class,'deleteData']);
-Route::get('edit/{id}',[ModelConnection::class,'editData']);
-Route::get('datashow',[ModelConnection::class,'showData']);
-Route::post('adduser',[ModelConnection::class,'userAdd']);
-Route::post('edit',[ModelConnection::class,'updateData']);
-Route::get('http',[Users::class,'httpRequest']);
-Route::delete("method",[Users::class,'httpMethod']);
-Route::post('userlogin',[UserAuth::class,'userLogin']);
-Route::post('useradd',[UserAuth::class,'userAdd']);
-Route::post('fileupload',[FileUpload::class,'index']);
-
-//route for middleware
-Route::group(['middleware'=>['protectedpage']],function(){
-    Route::get('/contact',function(){
-        return view('contact');
-        });
-});
+}
