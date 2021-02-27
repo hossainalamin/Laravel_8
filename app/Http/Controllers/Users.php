@@ -53,5 +53,4 @@ class Users extends Controller
         ->join("users","tbl_user.id","=","users.id")
         ->get();
     }
-
 }

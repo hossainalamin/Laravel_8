@@ -2,6 +2,7 @@
 namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\User;
+use App\Models\Member;
 
 class ModelConnection extends Controller
 {
@@ -35,4 +36,15 @@ class ModelConnection extends Controller
         $data->save();
         return redirect('datashow');
     }
+    public function accessors(){
+        return Member::all();
+    }
+    public function mutators(){
+        $member = new Member();
+        $member->name = "sojib"; 
+        $member->email = "sojib@gmail.com"; 
+        $member->address = "jatrabari";
+        $member->save(); 
+    }
+
 }
