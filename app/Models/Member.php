@@ -18,4 +18,8 @@ class Member extends Model
     public function setAddressAttribute($value){
         $this->attributes['address'] = $value ." Ban";
     }
+    public function getCompany(){
+        return $this->hasOne("App\Models\Company");
+        //for many relationship hasMany
+    }
 }

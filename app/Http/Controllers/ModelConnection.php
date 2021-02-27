@@ -46,5 +46,8 @@ class ModelConnection extends Controller
         $member->address = "jatrabari";
         $member->save(); 
     }
+    public function company(){
+        return Member::find(2)->getCompany;
+    }
 
 }

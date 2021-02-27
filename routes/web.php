@@ -70,6 +70,7 @@ Route::post('adduser',[ModelConnection::class,'userAdd']);
 Route::post('edit',[ModelConnection::class,'updateData']);
 Route::get("show",[ModelConnection::class,'accessors']);
 Route::get("save",[ModelConnection::class,'mutators']);
+Route::get("get",[ModelConnection::class,'company']);
 Route::get('database',[Users::class,'database']);
 Route::get('data',[Users::class,'queryBuilder']);
 Route::get('http',[Users::class,'httpRequest']);
