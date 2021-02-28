@@ -3,6 +3,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\Member;
+use App\Models\Company;
 
 class ModelConnection extends Controller
 {
@@ -48,6 +49,9 @@ class ModelConnection extends Controller
     }
     public function company(){
         return Member::find(2)->getCompany;
+    }
+    public function model(Company $key){
+        return $key;
     }
 
 }
