@@ -71,6 +71,7 @@ Route::post('edit',[ModelConnection::class,'updateData']);
 Route::get("show",[ModelConnection::class,'accessors']);
 Route::get("save",[ModelConnection::class,'mutators']);
 Route::get("get",[ModelConnection::class,'company']);
+Route::get('model/{key:company_name}',[ModelConnection::class,"model"]);
 Route::get('database',[Users::class,'database']);
 Route::get('data',[Users::class,'queryBuilder']);
 Route::get('http',[Users::class,'httpRequest']);
@@ -87,3 +88,10 @@ Route::group(['middleware'=>['protectedpage']],function(){
         return view('contact');
         });
 });
+//fluent String
+$data = "hi from laravel fluent String";
+$data = Str::of($data)
+->ucfirst($data)
+->camel($data)
+->replaceFirst("hi","Hello",$data);
+echo $data;
