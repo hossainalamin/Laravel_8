@@ -71,6 +71,7 @@ Route::post('edit',[ModelConnection::class,'updateData']);
 Route::get("show",[ModelConnection::class,'accessors']);
 Route::get("save",[ModelConnection::class,'mutators']);
 Route::get("get",[ModelConnection::class,'company']);
+Route::get("double",[ModelConnection::class,'list']);
 Route::get('model/{key:company_name}',[ModelConnection::class,"model"]);
 Route::get('database',[Users::class,'database']);
 Route::get('data',[Users::class,'queryBuilder']);

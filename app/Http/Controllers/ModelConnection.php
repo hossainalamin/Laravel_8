@@ -4,6 +4,7 @@ use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\Member;
 use App\Models\Company;
+use Illuminate\Support\Facades\DB;
 
 class ModelConnection extends Controller
 {
@@ -52,6 +53,11 @@ class ModelConnection extends Controller
     }
     public function model(Company $key){
         return $key;
+    }
+    public function list(){
+        //return DB::table('companies')->get();
+        //return DB::connection('mysql2')->table('tbl_user')->get();
+        return Blog::all();
     }
 
 }
