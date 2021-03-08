@@ -54,3 +54,5 @@ return "The request method is ".$req->method();
 });
 //api controller
 Route::get("data",[TestApi::class,"getData"]);
+Route::get("all",[TestApi::class,"list"]);
+Route::post("add",[TestApi::class,"addCompany"]);
