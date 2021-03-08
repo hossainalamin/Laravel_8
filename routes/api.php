@@ -2,6 +2,7 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\TestApi;
 
 /*
 |--------------------------------------------------------------------------
@@ -51,3 +52,5 @@ return "Request Method is ".$req->method();
 Route::any('/posts',function(Request $req){
 return "The request method is ".$req->method();
 });
+//api controller
+Route::get("data",[TestApi::class,"getData"]);
