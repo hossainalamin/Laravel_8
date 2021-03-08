@@ -23,4 +23,15 @@ class TestApi extends Controller
         return ["result"=>"Data not saved"];
         }
     }
+    public function update(Request $req){
+        $company_update = Company::find($req->id);
+        $company_update->company_name = $req->name;
+        $result = $company_update->save();
+        if($result){
+        return ["result"=>"Data has been updated"];
+        }else{
+        return ["result"=>"Data not updated"];
+        }
+    }
+
 }
