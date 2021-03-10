@@ -33,5 +33,19 @@ class TestApi extends Controller
         return ["result"=>"Data not updated"];
         }
     }
+    public function delete($id=null){
+        $result = Company::where("id","$id")->delete();
+        if($result){
+            return["result"=>"data deleted"];
+        }else{
+            return["result"=>"data not deleted"];
+        }
+    }
+    public function search($name){
+        return Company::where("company_name",$name)->get();
+    }
+    public function searchByChar($name){
+        return Company::where("company_name","like","%".$name."%")->get();
+    }
 
 }
