@@ -66,5 +66,9 @@ class TestApi extends Controller
             }
         }
     }
+    public function upload(Request $req){
+        $result = $req->file('file')->store('appDocs');
+        return ["Result"=>$result];
+    }
 
 }
