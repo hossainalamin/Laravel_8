@@ -59,4 +59,5 @@ Route::post("add",[TestApi::class,"addCompany"]);
 Route::put("update",[TestApi::class,"update"]);
 Route::delete("delete/{id?}",[TestApi::class,"delete"]);
 Route::post("test",[TestApi::class,'testData']);
+Route::apiResource("member",ApiResource::class);
 
